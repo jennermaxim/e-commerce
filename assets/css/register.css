@@ -1,0 +1,33 @@
+body{ 
+    font: 14px sans-serif;
+}
+.wrapper{ 
+    width: 360px; 
+    padding: 20px; 
+    background-color: #555;
+    margin-top: 100px;
+    color: #fff;
+    border-radius: 20px;
+    vertical-align: center;
+}
+.form-control{
+    border-radius: 20px;
+    background-color: #e8f0fe;
+}
+.btn{
+    border: none;
+    border-radius: 20px;
+    width: 153px;
+}
+.btn-primary{
+    background-color: #5cad46;
+}
+.btn-secondary{
+    background-color: #b14b57;
+}
+.btn-primary:hover{
+    background-color: #35a916;
+}
+.btn-secondary:hover{
+    background-color: #b63645;
+}
