@@ -1,3 +1,41 @@
+<?php
+session_start();
+date_default_timezone_set('Asia/Kolkata');
+$date = date('Y-m-d');
+$_SESSION["date"] = $date;
+include 'config.php';
+if ($_POST) {
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $contact = $_POST['contact'];
+    $address = $_POST['address'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+
+    if ($password == $cpassword) {
+        $result = $conn->query("select * from users where email='$email';");
+        if ($result->num_rows == 1) {
+            $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Already have an account for this Email address.</label>';
+        } else {
+            $stmt = $conn->prepare("INSERT INTO users(email, name, contact, address, password) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $email, $name, $contact, $address, $password);
+            if ($stmt->execute()) {
+                $_SESSION["user"] = $email;
+                $_SESSION["username"] = $name;
+
+                header('Location: index.php');
+                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;"></label>';
+            } else {
+                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Failed to create account. Please try again.</label>';
+            }
+        }
+    } else {
+        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password do not much</label>';
+    }
+} else {
+    $error = '<label for="promter" class="form-label"></label>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +43,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/login.css">
@@ -18,49 +57,6 @@
 </head>
 
 <body>
-    <?php
-
-    session_start();
-    // Set the new timezone
-    date_default_timezone_set('Asia/Kolkata');
-    $date = date('Y-m-d');
-    $_SESSION["date"] = $date;
-
-    //import database
-    include 'config.php';
-
-    if ($_POST) {
-        $email = $_POST['email'];
-        $name = $_POST['name'];
-        $contact = $_POST['contact'];
-        $address = $_POST['address'];
-        $password = $_POST['password'];
-        $cpassword = $_POST['cpassword'];
-
-        if ($password == $cpassword) {
-            $result = $conn->query("select * from users where email='$email';");
-            if ($result->num_rows == 1) {
-                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Already have an account for this Email address.</label>';
-            } else {
-                $stmt = $conn->prepare("INSERT INTO users(email, name, contact, address, password) VALUES (?, ?, ?, ?, ?)");
-                $stmt->bind_param("sssss", $email, $name, $contact, $address, $password);
-                if ($stmt->execute()) {
-                    $_SESSION["user"] = $email;
-                    $_SESSION["username"] = $name;
-
-                    header('Location: index.php');
-                    $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;"></label>';
-                } else {
-                    $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Failed to create account. Please try again.</label>';
-                }
-            }
-        } else {
-            $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password do not much</label>';
-        }
-    } else {
-        $error = '<label for="promter" class="form-label"></label>';
-    }
-    ?>
     <center>
         <div class="container">
             <table border="0" style="width: 69%;">
