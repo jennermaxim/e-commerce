@@ -1,3 +1,28 @@
+<?php
+session_start();
+session_destroy();
+$_SESSION["user"] = "";
+$_SESSION["usertype"] = "";
+date_default_timezone_set('Asia/Kolkata');
+$date = date('Y-m-d');
+$_SESSION["date"] = $date;
+include "config.php";
+if ($_POST) {
+    $email = $_POST['useremail'];
+    $password = $_POST['userpassword'];
+    $error = '<label for="promter" class="form-label"></label>';
+    $checker = $conn->query("select * from users where email='$email' and password='$password'");
+    if ($checker->num_rows == 1) {
+        session_start();
+        $_SESSION["user"] = $email;
+        header('location: index.php');
+    } else {
+        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+    }
+} else {
+    $error = '<label for="promter" class="form-label">&nbsp;</label>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,32 +37,6 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    $_SESSION["user"] = "";
-    $_SESSION["usertype"] = "";
-    date_default_timezone_set('Asia/Kolkata');
-    $date = date('Y-m-d');
-    $_SESSION["date"] = $date;
-    include "config.php";
-    if ($_POST) {
-
-        $email = $_POST['useremail'];
-        $password = $_POST['userpassword'];
-        $error = '<label for="promter" class="form-label"></label>';
-
-        $checker = $conn->query("select * from users where email='$email' and password='$password'");
-        if ($checker->num_rows == 1) {
-            $_SESSION["user"] = $email;
-            $_SESSION["username"] = $fname;
-            header('location: index.php');
-        } else {
-            $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
-        }
-    } else {
-        $error = '<label for="promter" class="form-label">&nbsp;</label>';
-    }
-    ?>
     <center>
         <div class="container">
             <table border="0" style="margin: 0;padding: 0;width: 60%;">

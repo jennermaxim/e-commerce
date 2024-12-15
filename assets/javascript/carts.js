@@ -124,6 +124,12 @@ let TotalAmount = () => {
     // console.log(amount);
     label.innerHTML = `
     <h2 id="totalAmount" class="total-bill">Total Bill : UGX ${amount}</h2>
+    <select id="paymentMethod" class="payment-method" required>
+      <option value="">Select the payment method</option>
+      <option value="Bank Transfer">Bank Transfer</option>
+      <option value="Mobile Money">Mobile Money</option>
+      <option value="Cash On Delivery">Cash On Delivery</option>
+    </select>
     <button onclick="checkout()" class="checkout" id="checkout">Checkout</button>
     <button onclick="clearCart()" class="removeAll">Clear Cart</button>
     `;

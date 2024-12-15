@@ -12,9 +12,11 @@ $response = ["success" => false, "error" => ""];
 
 if ($user_id && $data && isset($data['totalAmount']) && isset($data['items'])) {
     $totalAmount = $data['totalAmount'];
+    $paymentMethod = $data['paymentMethod'];
 
     // Insert main order
-    $sql_order = "INSERT INTO orders (user_id, totalAmount) VALUES ('$user_id', '$totalAmount')";
+    $sql_order = "INSERT INTO orders (user_id, totalAmount, payment_method) 
+    VALUES ('$user_id', '$totalAmount', '$paymentMethod')";
     if ($conn->query($sql_order)) {
         $order_id = $conn->insert_id;
 

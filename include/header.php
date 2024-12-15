@@ -1,38 +1,38 @@
+<?php
+session_start();
+include("config.php");
+
+if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
+    $userEmail = mysqli_real_escape_string($conn, $_SESSION["user"]);
+    $query = "SELECT * FROM users WHERE email = '$userEmail'";
+
+    $select = mysqli_query($conn, $query);
+
+    if ($select) {
+        $user = mysqli_fetch_assoc($select);
+        if ($user) {
+            $name = $user['name'];
+        } else {
+            $name = "User";
+        }
+    } else {
+        die("Query failed: " . mysqli_error($conn));
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/headerr.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <title>Distributed Food System</title>
 </head>
 
 <body>
-    <?php
-    session_start();
-    include("config.php");
-
-    if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
-        // Sanitize user input to prevent SQL injection
-        $userEmail = mysqli_real_escape_string($conn, $_SESSION["user"]);
-        $query = "SELECT * FROM users WHERE email = '$userEmail'";
-
-        $select = mysqli_query($conn, $query);
-
-        if ($select) {
-            $user = mysqli_fetch_assoc($select);
-            if ($user) {
-                $name = $user['name'];
-            } else {
-                // Handle case where no user is found
-                $name = "User";
-            }
-        } else {
-            // Query execution failed, log or display error message
-            die("Query failed: " . mysqli_error($conn));
-        }
-    }
-    ?>
     <div class="topnav" id="myTopnav">
         <a href="index.php" class="logo">
             <h2>DFS</h2>
@@ -43,22 +43,15 @@
         </div>
         <div class="navbar-right">
             <?php
-            if (isset($_SESSION["user"])) {
-                if (($_SESSION["user"]) == "") {
-                    ?>
-                    <a href="./login.php" class="a-header"><i class="fa fa-fw fa-user"></i> Login</a>
-                    <a href="./register.php" class="a-header"><i class="fa fa-fw fa-user"></i> SignUp</a>
-                    <?php
-                } else {
-                    ?>
-                    <a href="#" class="a-header"><i class="fa fa-fw fa-user"></i> Hi,
-                        <b><?php echo htmlspecialchars($name); ?></b>
-                    </a>
-                    <a href="./logout.php" onclick="confirmations();" class="a-header">
-                        <i class="fa fa-fw fa-user"></i>Logout
-                    </a>
-                    <?php
-                }
+            if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
+                ?>
+                <a href="#" class="a-header"><i class="fa fa-fw fa-user"></i> Hi,
+                    <b><?php echo htmlspecialchars($name); ?></b>
+                </a>
+                <a href="./logout.php" onclick="confirmations();" class="a-header">
+                    <i class="fa fa-fw fa-user"></i>Logout
+                </a>
+                <?php
             } else {
                 ?>
                 <a href="./login.php" class="a-header"><i class="fa fa-fw fa-user"></i> Login</a>
@@ -66,11 +59,8 @@
                 <?php
             }
             ?>
-
-            <!-- <a href="./cart.php"><i class="fa fa-fw fa-shopping-cart"></i> Cart</a> -->
             <a href="cart.php">
                 <div class="cart">
-                    <!-- <i class="bi bi-cart2"></i> -->
                     <i class="fa fa-fw fa-shopping-cart"></i>
                     <div id="cartAmount" class="cartAmount">0</div>
                 </div>
@@ -98,7 +88,6 @@
         </div>
     </section>
 
-
     <script>
         function myFunction() {
             var x = document.getElementById("myTopnav");
@@ -109,6 +98,3 @@
             }
         }
     </script>
-</body>
-
-</html>

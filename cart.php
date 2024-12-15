@@ -30,7 +30,7 @@ if ($user) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 
-<body>
+<body style="background-color: rgb(243, 243, 243);">
   <div class="main">
     <div id="label" class="text-center"></div>
     <div class="shopping-cart" id="shopping-cart"></div>
