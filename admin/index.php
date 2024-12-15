@@ -1,3 +1,22 @@
+<?php
+session_start();
+if (isset($_SESSION["admin"])) {
+    if (($_SESSION["admin"]) == "") {
+        header("location: login.php");
+    }
+} else {
+    header("location: login.php");
+}
+
+include "../config.php";
+$query = "SELECT * FROM `admin` WHERE email = '" . $_SESSION["admin"] . "'";
+$select = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($select);
+if ($user) {
+    $name = $user['name'];
+    $admin_id = $user['admin_id'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,27 +40,6 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    if (isset($_SESSION["user"])) {
-        if (($_SESSION["user"]) == "") {
-            header("location: login.php");
-        }
-    } else {
-        header("location: login.php");
-    }
-
-    include "../config.php";
-    $query = "SELECT * FROM admin WHERE email = '" . $_SESSION['user'] . "'";
-    $select = mysqli_query($conn, $query);
-    $user = mysqli_fetch_assoc($select);
-    if ($user) {
-        $name = $user['name'];
-        $admin_id = $user['admin_id'];
-    }
-    ?>
     <div class="container">
         <div class="menu">
             <table class="menu-container" border="0">
@@ -58,7 +56,7 @@
                                     } else {
                                         echo "User";
                                     } ?></p>
-                                    <p class="profile-subtitle"><?php echo $_SESSION['user']; ?></p>
+                                    <p class="profile-subtitle"><?php echo $_SESSION['admin']; ?></p>
                                 </td>
                             </tr>
                             <tr>

@@ -68,25 +68,6 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
             <a href="javascript:void(0);" style="font-size:38px;" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
     </div>
-    <!--About Us section-->
-    <section class="about-container" id="about">
-        <div class="about-box">
-            <div class="about-header">
-                About Our Company
-                <a href="#" class="btn-close">&times;</a>
-            </div>
-            <p class="about-text">
-                We as that company are an online based company that aims at providing satisfaction to our customers for
-                a better shopping experience. We have been operating since 2010 and we have been developing since then.
-                Over a decade ago, we started an online shopping platform I sell over thousands of commodities of
-                various brands around the world. Today we have become the leading e-commerce platform because of how we
-                deliver our services to our customers. We as a company believe that everyone deserves to have a
-                convenient, fast and easy shopping experience with variety of choice to make. Given the number of years
-                we have been operating, our shopping platform has become successful and we hope to attain more success.
-                We are excited to help you in your shopping journey with us.
-            </p>
-        </div>
-    </section>
 
     <script>
         function myFunction() {
