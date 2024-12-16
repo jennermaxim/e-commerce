@@ -26,9 +26,9 @@
                 &copy; 2024 Distributed Food System
             </div>
             <div class="contacts">
-                <p>Phone: 0772973056</p>
+                <p>Phone: +243970562252</p>
                 <br>
-                <p><a href="mailto: sadiyo10@gmail.com">Email: sadiyo10@gmail.com</a></p>
+                <p><a href="mailto: sadiyo10@gmail.com">Email: jonathansibetu@gmail.com</a></p>
             </div>
         </div>
     </footer>
