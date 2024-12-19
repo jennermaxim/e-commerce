@@ -5,8 +5,7 @@ if (isset($_SESSION["user"])) {
     header("location: login.php");
   }
 } else {
-  // header("location: login.php");
-  echo "<script>window.location ='login.php'</script>";
+  echo "<script>window.location.href ='login.php'</script>";
 }
 include('include/header.php');
 ?>

@@ -24,7 +24,6 @@ if ($_POST) {
                 session_start();
                 $_SESSION["user"] = $email;
                 $_SESSION["username"] = $name;
-
                 header('Location: index.php');
                 $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;"></label>';
             } else {
