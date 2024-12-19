@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("config.php");
 
 if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
@@ -28,6 +27,7 @@ if (isset($_SESSION["user"]) && !empty($_SESSION["user"])) {
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="assets/javascript/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/index.css">
     <title>Distributed Food System</title>

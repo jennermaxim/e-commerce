@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_destroy();
 date_default_timezone_set('Asia/Kolkata');
 $date = date('Y-m-d');
 $_SESSION["date"] = $date;
@@ -20,6 +21,7 @@ if ($_POST) {
             $stmt = $conn->prepare("INSERT INTO users(email, name, contact, address, password) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("sssss", $email, $name, $contact, $address, $password);
             if ($stmt->execute()) {
+                session_start();
                 $_SESSION["user"] = $email;
                 $_SESSION["username"] = $name;
 
