@@ -1,3 +1,3 @@
 # E-commerce System
 
-# Author: [Jenner Maxim](http://github.com/jennermaxima)
+# Author: [Jenner Maxim](https://jennermaxim.netlify.app/)
