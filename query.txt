@@ -4,3 +4,23 @@ ALTER TABLE `order_items` ADD `status` INT(2) NOT NULL DEFAULT '0' AFTER `total_
 
 
 ALTER TABLE `orders` ADD `payment_method` VARCHAR(100) NOT NULL AFTER `totalAmount`; 
+
+
+
+
+ALTER TABLE orders
+ADD CONSTRAINT fk_users
+FOREIGN KEY (user_id)
+REFERENCES users(user_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+
+
+
+ALTER TABLE order_items
+ADD CONSTRAINT fk_order
+FOREIGN KEY (order_id)
+REFERENCES orders(order_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
