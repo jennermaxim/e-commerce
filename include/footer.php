@@ -23,7 +23,7 @@
                 </li>
             </ul>
             <div class="copy-right">
-                &copy; 2025 Distributed Food System
+                &copy; 2024 Distributed Food System
             </div>
             <div class="contacts">
                 <p>Phone: +243970562252</p>
